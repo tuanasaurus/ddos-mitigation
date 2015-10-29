@@ -33,7 +33,6 @@
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group"> </div>
-</form>
       <ul class="nav navbar-nav navbar-right">
         <li> </li>
         <li class="dropdown">
@@ -63,10 +62,12 @@
       Fastly’s security services will help you scale without risk. Our DDoS incident command and mitigation services provide a solution for HTTP/HTTPS threats, L7 threats, and attacks that attempt to overwhelm the cache. 
       </p>
       <hr style="color:black; border-top: 1px solid black;"/>
+      <ul class="center-block">
         <li>Always-on protection</li>
         <li>Incident command and coordination across teams and services</li>
         <li>Unlimited overage protection</li>
         <li>The global reach and scale of Fastly’s worldwide network</li>
+      </ul>
   </div>
 </div>
 </header>
@@ -144,5 +145,51 @@
 <script src="js/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.js"></script>
+
+<script type="text/javascript">
+var defaultHiddenFieldNameValue = "NoData";
+ 
+function getQueryStringParamValue(strQStrParam) {
+var strURL = document.location.href;
+ 
+var strQStrParamValue = "";
+ 
+        if (strURL.indexOf('?') != -1)
+        {
+                    strQStrParamValue = strURL.substr(strURL.indexOf('?') + 1);
+                    if (strQStrParamValue.indexOf(strQStrParam) != -1)
+                    {
+                                strQStrParamValue = strQStrParamValue.substr(strQStrParamValue.indexOf(strQStrParam));
+                                strQStrParamValue = strQStrParamValue.substr(strQStrParamValue.indexOf('=') + 1);
+                                if (strQStrParamValue.indexOf('&') != -1)
+                                strQStrParamValue = strQStrParamValue.substr(0, strQStrParamValue.indexOf('&'));
+                                return strQStrParamValue;
+                    }else{
+                                strQStrParamValue = defaultHiddenFieldNameValue;
+                                return strQStrParamValue;
+                    }
+        }else{
+                    strQStrParamValue = defaultHiddenFieldNameValue;
+                    return strQStrParamValue;
+        }
+}
+ 
+var form = "demandgenlandingpage1";       
+ 
+function setCampaign(){
+ 
+  var elqForm = document.forms[form];
+  
+ 
+elqForm.elements[‘utm_campaign'].value = getQueryStringParamValue('utm_campaign');
+elqForm.elements['utm_source'].value = getQueryStringParamValue('utm_source');
+elqForm.elements['utm_medium'].value = getQueryStringParamValue('utm_medium');
+elqForm.elements['utm_term'].value = getQueryStringParamValue('utm_term');
+elqForm.elements['utm_content'].value = getQueryStringParamValue('utm_content');  
+}
+window.onload = setCampaign;
+</script>
+
+
 </body>
 </html>
