@@ -146,6 +146,28 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.js"></script>
 
+<script type='text/javascript'><!--//
+var timerId = null, timeout = 5;
+//--></script>
+<script type='text/javascript'><!--//
+function WaitUntilCustomerGUIDIsRetrieved() {
+if (!!(timerId)) {
+   if (timeout == 0) {
+return;
+}
+if (typeof this.GetElqCustomerGUID === 'function') {
+       document.forms["demandgenlandingpage1"].elements["elqCustomerGUID"].value = GetElqCustomerGUID();
+return;
+}
+timeout -= 1;
+}
+timerId = setTimeout("WaitUntilCustomerGUIDIsRetrieved()", 500);
+return;
+}
+window.onload = WaitUntilCustomerGUIDIsRetrieved;
+_elqQ.push(['elqGetCustomerGUID']);
+//--></script>
+
 
 <script type="text/javascript">
 var defaultHiddenFieldNameValue = "NoData";
